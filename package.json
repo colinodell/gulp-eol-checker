@@ -1,0 +1,32 @@
+{
+  "name": "gulp-eol-checker",
+  "version": "0.0.1",
+  "description": "Check whether files have the correct line endings",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colinodell/gulp-eol-checker.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "eol",
+    "crlf",
+    "newline"
+  ],
+  "author": "Colin O'Dell <colinodell@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/colinodell/gulp-eol-checker/issues"
+  },
+  "devDependencies": {
+    "mocha": "~2.3",
+    "sinon": "~1.17.2"
+  },
+  "dependencies": {
+    "through2": "~2.0",
+    "gulp-util": "~3.0"
+  }
+}
