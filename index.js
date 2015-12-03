@@ -24,14 +24,14 @@ module.exports = function (desiredLineEnding) {
             regexp = new RegExp("\n");
             break;
         default:
-            this.emit('error', new PluginError('gulp-eol-checker', 'Invalid line ending type'));
+            this.emit('error', new PluginError('gulp-eol-enforce', 'Invalid line ending type'));
     }
 
     function TransformStream (file, encoding, callback) {
         var filename;
 
         if (file.isStream()) {
-            this.emit('error', new PluginError('gulp-eol-checker', 'gulp-eol-checker does not support streams'));
+            this.emit('error', new PluginError('gulp-eol-enforce', 'gulp-eol-enforce does not support streams'));
             return callback(null, file);
         }
 
@@ -47,7 +47,7 @@ module.exports = function (desiredLineEnding) {
             var str = file.contents.toString();
 
             if (regexp.test(str)) {
-                this.emit('error', new PluginError('gulp-eol-checker', 'File ' + filename + ' contains invalid line endings'));
+                this.emit('error', new PluginError('gulp-eol-enforce', 'File ' + filename + ' contains invalid line endings'));
             }
         }
 

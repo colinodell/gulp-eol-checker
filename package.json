@@ -1,14 +1,14 @@
 {
-  "name": "gulp-eol-checker",
+  "name": "gulp-eol-enforce",
   "version": "0.0.1",
-  "description": "Check whether files have the correct line endings",
+  "description": "Enforces proper line endings for files",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/colinodell/gulp-eol-checker.git"
+    "url": "https://github.com/colinodell/gulp-eol-enforce.git"
   },
   "keywords": [
     "gulpplugin",
@@ -19,7 +19,7 @@
   "author": "Colin O'Dell <colinodell@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/colinodell/gulp-eol-checker/issues"
+    "url": "https://github.com/colinodell/gulp-eol-enforce/issues"
   },
   "devDependencies": {
     "mocha": "~2.3",

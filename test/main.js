@@ -4,7 +4,7 @@ var File = require('gulp-util').File;
 var Buffer = require('buffer').Buffer;
 require('mocha');
 
-describe('gulp-eol-checker', function() {
+describe('gulp-eol-enforce', function() {
     var sampleContent = {
         'windows': 'Hello\r\nWorld!',
         'linux': 'Hello\nWorld!',
