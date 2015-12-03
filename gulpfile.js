@@ -9,6 +9,7 @@ gulp.task('eol', function () {
       '**/*.{js,json}',
       '.*',
       '*',
+      '!example.png',
       '!node_modules/**'
     ]).pipe(eol('\n'));
 });
