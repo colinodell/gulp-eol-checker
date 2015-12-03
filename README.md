@@ -1,5 +1,7 @@
 # gulp-eol-enforce
 
+![status](https://secure.travis-ci.org/colinodell/gulp-eol-enforce.svg?branch=master)
+
 Checks line endings to ensure they're the proper type.  This plugin will fail if undesired line endings are found.  Particularly useful as a pre-commit hook.
 
 ## Usage
