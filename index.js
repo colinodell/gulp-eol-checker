@@ -1,5 +1,5 @@
+var gutil = require( 'gulp-util' );
 var path = require('path');
-var PluginError = require('gulp-util').PluginError;
 var os = require('os');
 var through = require('through2');
 
@@ -24,21 +24,21 @@ module.exports = function (desiredLineEnding) {
             regexp = new RegExp("\n");
             break;
         default:
-            this.emit('error', new PluginError('gulp-eol-enforce', 'Invalid line ending type'));
+            this.emit('error', new gutil.PluginError('gulp-eol-enforce', 'Invalid line ending type'));
     }
 
-    function TransformStream (file, encoding, callback) {
+    var transform = through.obj(function(file, encoding, callback) {
         var filename;
 
         if (file.isStream()) {
-            this.emit('error', new PluginError('gulp-eol-enforce', 'gulp-eol-enforce does not support streams'));
+            this.emit('error', new gutil.PluginError('gulp-eol-enforce', 'gulp-eol-enforce does not support streams'));
             return callback(null, file);
         }
 
         if (typeof file === 'string') {
             filename = file;
         } else if (typeof file.path === 'string') {
-            filename = path.basename(file.path);
+            filename = path.relative(file.cwd, file.path);
         } else {
             filename = '';
         }
@@ -47,12 +47,28 @@ module.exports = function (desiredLineEnding) {
             var str = file.contents.toString();
 
             if (regexp.test(str)) {
-                this.emit('error', new PluginError('gulp-eol-enforce', 'File ' + filename + ' contains invalid line endings'));
+                this.badFiles.push(filename);
             }
         }
 
         return callback(null, file);
-    }
+    });
 
-    return through.obj(TransformStream);
+    transform.badFiles = [];
+
+    transform.on('finish', function() {
+        if (this.badFiles.length > 0) {
+            gutil.log(gutil.colors.cyan('Invalid line endings detected in:'));
+            for (var i = 0; i < this.badFiles.length; i++) {
+                gutil.log(' - ' + gutil.colors.magenta(this.badFiles[i]));
+            }
+
+            this.emit('error', new gutil.PluginError('gulp-eol-enforce', {
+                message: 'Invalid line endings detected',
+                showStack: false
+            }));
+        }
+    });
+
+    return transform;
 };

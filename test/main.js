@@ -1,5 +1,5 @@
 var gulpEolChecker = require('../');
-var sinon = require('sinon');
+var should = require('should');
 var File = require('gulp-util').File;
 var Buffer = require('buffer').Buffer;
 require('mocha');
@@ -29,18 +29,19 @@ describe('gulp-eol-enforce', function() {
 
     function testFiles(stream, content, shouldBeValid) {
         it('should test the line endings', function (done) {
-            var spy = sinon.spy();
-            stream.on('error', spy);
 
             stream.on('data', function() {
-                if (!shouldBeValid) {
-                    sinon.assert.calledOnce(spy);
+                if (shouldBeValid) {
+                    stream.badFiles.should.be.empty();
                 } else {
-                    sinon.assert.notCalled(spy);
+                    stream.badFiles.should.have.length(1);
                 }
 
                 return done();
             });
+
+            // We don't want the eol errors being emitted during our tests
+            stream.removeAllListeners('finish');
 
             var file = new File({
                 cwd: '/tmp/test/',
