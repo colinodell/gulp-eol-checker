@@ -1,6 +1,10 @@
 # gulp-eol-enforce
 
-![status](https://secure.travis-ci.org/colinodell/gulp-eol-enforce.svg?branch=master)
+[![status](https://img.shields.io/travis/colinodell/gulp-eol-enforce.svg)](https://travis-ci.org/colinodell/gulp-eol-enforce)
+[![npm version](https://img.shields.io/npm/v/gulp-eol-enforce.svg)](https://www.npmjs.com/package/gulp-eol-enforce)
+![dependencies](https://img.shields.io/david/colinodell/gulp-eol-enforce.svg)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![downloads](https://img.shields.io/npm/dt/gulp-eol-enforce.svg)](https://www.npmjs.com/package/gulp-eol-enforce)
 
 Checks line endings to ensure they're the proper type.  This plugin will fail if undesired line endings are found.  Particularly useful as a pre-commit hook.
 
