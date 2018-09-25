@@ -1,6 +1,6 @@
 var gulpEolChecker = require('../');
 var should = require('should');
-var File = require('gulp-util').File;
+var Vinyl = require('vinyl');
 var Buffer = require('buffer').Buffer;
 require('mocha');
 
@@ -43,7 +43,7 @@ describe('gulp-eol-enforce', function() {
             // We don't want the eol errors being emitted during our tests
             stream.removeAllListeners('finish');
 
-            var file = new File({
+            var file = new Vinyl({
                 cwd: '/tmp/test/',
                 base: '/tmp/test',
                 path: '/tmp/test/foo.txt',
